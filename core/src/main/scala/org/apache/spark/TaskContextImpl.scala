@@ -76,7 +76,7 @@ private[spark] class TaskContextImpl(
    *
    * `invokeListeners()` uses this to ensure listeners are called sequentially.
    */
-  @transient private var listenerInvocationThread: Option[Thread] = None
+  @transient @volatile private var listenerInvocationThread: Option[Thread] = None
 
   // If defined, the corresponding task has been killed and this option contains the reason.
   @volatile private var reasonIfKilled: Option[String] = None
